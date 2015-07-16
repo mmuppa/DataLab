@@ -12,6 +12,7 @@
     <string name="LOGGEDIN">loggedin</string>
     <string name="LOGGEDIN_DEFAULT">false</string>
 
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ACCT_FILE">edu.uw.tacoma.mmuppa.datalab.ACCT_FILE</string>
+
+    <string name="delete">Delete</string>
 </resources>

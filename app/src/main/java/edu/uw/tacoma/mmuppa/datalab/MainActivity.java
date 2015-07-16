@@ -1,12 +1,17 @@
 package edu.uw.tacoma.mmuppa.datalab;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.List;
+
+import edu.uw.tacoma.mmuppa.datalab.data.UserInfoDB;
+import edu.uw.tacoma.mmuppa.datalab.model.UserInfo;
 
 public class MainActivity extends AppCompatActivity
                         implements  LoginFragment.MyMenuListener {
@@ -29,10 +34,18 @@ public class MainActivity extends AppCompatActivity
         } else {
             fragment = new MenuFragment();
         }
-        getFragmentManager().beginTransaction()
+        getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, fragment)
                 .commit();
     }
+
+    public static List<UserInfo> getUserList(Context c) {
+        UserInfoDB userInfoDB = new UserInfoDB(c);
+        List<UserInfo> list = userInfoDB.selectUsers();
+        userInfoDB.closeDB();
+        return list;
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -58,11 +71,11 @@ public class MainActivity extends AppCompatActivity
                     .putBoolean(getString(R.string.LOGGEDIN), false)
                     .commit();
 
-            Fragment fragment = getFragmentManager()
+            Fragment fragment = getSupportFragmentManager()
                     .findFragmentById(R.id.fragment_container);
             if (fragment instanceof  MenuFragment) {
                 LoginFragment loginFragment = new LoginFragment();
-                getFragmentManager().beginTransaction()
+                getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, loginFragment)
                         .commit();
             }
@@ -75,7 +88,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void startMenu() {
         MenuFragment menuFragment = new MenuFragment();
-        getFragmentManager().beginTransaction()
+        getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, menuFragment)
                 .commit();
     }
