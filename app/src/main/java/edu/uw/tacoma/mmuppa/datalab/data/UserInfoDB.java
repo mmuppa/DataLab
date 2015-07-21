@@ -72,6 +72,12 @@ public class UserInfoDB {
         mSQLiteDatabase.delete("User", "email=?",new String[] {email});
     }
 
+    public void updatePassword(String email, String pwd) {
+        ContentValues values = new ContentValues();
+        values.put("pwd", pwd);
+        mSQLiteDatabase.update("User", values
+                , "email=?",new String[] {email} );
+    }
     public void closeDB() {
         mSQLiteDatabase.close();
     }

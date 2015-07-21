@@ -15,4 +15,8 @@
     <string name="ACCT_FILE">edu.uw.tacoma.mmuppa.datalab.ACCT_FILE</string>
 
     <string name="delete">Delete</string>
+    <string name="reset">Reset Password</string>
+    <string name="curr_pwd_hint">Enter Current Password</string>
+    <string name="new_pwd_hint">Enter New Password</string>
+
 </resources>

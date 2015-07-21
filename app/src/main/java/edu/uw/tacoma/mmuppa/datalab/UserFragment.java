@@ -72,8 +72,20 @@ public class UserFragment extends Fragment {
             }
         });
 
+        Button reset = (Button) v.findViewById(R.id.reset_button);
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity) getActivity()).launchResetPassword(
+                        mEmail.getText().toString());
+            }
+        });
         return v;
 
+    }
+
+    public interface UserFragmentListener {
+        public void launchResetPassword(String email);
     }
 
 

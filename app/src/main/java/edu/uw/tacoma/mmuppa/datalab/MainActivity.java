@@ -14,7 +14,8 @@ import edu.uw.tacoma.mmuppa.datalab.data.UserInfoDB;
 import edu.uw.tacoma.mmuppa.datalab.model.UserInfo;
 
 public class MainActivity extends AppCompatActivity
-                        implements  LoginFragment.MyMenuListener {
+                        implements  LoginFragment.MyMenuListener,
+                        UserFragment.UserFragmentListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +91,18 @@ public class MainActivity extends AppCompatActivity
         MenuFragment menuFragment = new MenuFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, menuFragment)
+                .commit();
+    }
+
+    @Override
+    public void launchResetPassword(String email) {
+        ResetPasswordFragment resetPasswordFragment = new ResetPasswordFragment();
+        Bundle args = new Bundle();
+        args.putString(ResetPasswordFragment.EMAIL, email);
+        resetPasswordFragment.setArguments(args);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, resetPasswordFragment)
+                .addToBackStack(null)
                 .commit();
     }
 }
